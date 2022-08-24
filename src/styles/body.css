@@ -1,0 +1,18 @@
+.searchForm{
+    display: inline-block;
+    padding: 8px;
+}
+
+.createOrderButton{
+    margin: 10px !important;
+    background-color: #3872b4 !important;
+}
+
+.deleteSelectedButton{
+    margin: 10px !important;
+    background-color: #3872b4 !important;
+}
+
+.orderTypeMenu{
+    padding: 8px !important;
+}
