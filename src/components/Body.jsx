@@ -17,30 +17,21 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 
 import '../styles/body.css';
-
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Container from '@mui/material/Container';
-import Pagination from '@mui/material/Pagination';
-import { styled } from '@mui/material/styles';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { getOrders, deleteOrder } from '../data/dataMethods';
-import { remove } from 'lodash';
+
 
 const _ = require('lodash');
 
 const Body = (props) => {
     const [searchText, setSearchText] = useState('');
-    const [searchQuery, setSearchQuery] = useState('');
     const [masterData, setMasterData] = useState([]);
     const [listData, setListData] = useState([])
     const [orderTypes, setOrderTypes] = useState([]);
     const [selectedOrderTypes, setSelectOrderTypes] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [listSelection, setListSelection] = useState([]);
-    
 
-    async function setData (data) {
+    async function setData () {
         const handleDataFetch = (res) => {
             setListData(res.data);
         }
@@ -80,29 +71,17 @@ const Body = (props) => {
         },
     };
 
-    const SearchBar = ({setSearchQuery}) => (
-        <form className="searchForm">
-            <TextField
-            id="search-bar"
-            className="text"
-            onInput={(e) => {
-                setSearchQuery(e.target.value);
-            }}
-            label="Customer Search"
-            variant="outlined"
-            size="small"
-            />
-            <IconButton 
-                type="submit" 
-                aria-label="search" 
-                style={{ 
-                    backgroundColor: "#3872b4",
-                    borderRadius: "10%"
-                }}>
-                <SearchIcon style={{ fill: "#fff" }} />
-            </IconButton>
-        </form>
-    );
+    const filterBySearch = (text) => {
+        let newArr = [];;
+        console.log(masterData.filter((item) => item.orderId.includes(text)))
+        newArr.push(masterData.filter((item) => item.orderId.includes(text)))
+        setListData(...newArr);
+    }
+
+    const handleSearch = (event) => {
+        setSearchText(event.target.value);
+        filterBySearch(event.target.value)
+    }
 
     //Handles order type filter
     useEffect(() => {
@@ -139,6 +118,7 @@ const Body = (props) => {
         })
         
         setListData(newArr);
+        setMasterData(newArr);
     }
 
     return(
@@ -152,7 +132,26 @@ const Body = (props) => {
                 autoComplete="off"
                 className="formBox"
             >
-                <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+                <div className="searchForm">
+                    <TextField
+                        id="search-bar"
+                        className="text"
+                        onChange={handleSearch}
+                        label="Search By Id"
+                        variant="outlined"
+                        size="small"
+                        value={searchText}
+                    />
+                    <IconButton 
+                        type="submit" 
+                        aria-label="search" 
+                        style={{ 
+                            backgroundColor: "#3872b4",
+                            borderRadius: "10%"
+                        }}>
+                        <SearchIcon style={{ fill: "#fff" }} />
+                    </IconButton>
+                </div>
                 <Button 
                     variant="contained"
                     className="createOrderButton" 
