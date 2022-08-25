@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import Enzyme, { shallow, mount } from 'enzyme';
+import React from 'react';
+import Adapter from 'enzyme-adapter-react-16';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+Enzyme.configure({ adapter: new Adapter() });
+
+test('App Component renders', () => {
+  const wrapper = shallow(<App open={true}/>);
+
+  expect(wrapper.exists()).toBe(true);
 });
