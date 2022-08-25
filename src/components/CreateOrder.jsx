@@ -9,6 +9,8 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { postOrder } from '../data/dataMethods';
+import { connect } from 'react-redux';
+import { addDraftOrder } from '../redux/actions';
 
 import '../styles/createOrder.css';
 
@@ -79,7 +81,22 @@ const CreateOrder = (props) => {
         postOrder(newOrder, props.setData)
         props.handleClose();
     }
-
+    
+    const handleDraft = () => {
+        const d = new Date()
+        const date = dayName(d.getDay()) + ", "+ d.getDate() + " " + monthName(d.getMonth()) + " " + d.getFullYear();
+        let newOrder = {}
+        newOrder = {
+            //UserName hardcode until OAuth connected
+            createdByUserName: 'Caleb',
+            customerName: customerName,
+            orderType: type,
+            createdDate: date,
+        }
+        props.addDraftOrder(newOrder);
+        props.handleClose();
+    }
+    
     const handleCancel = () => {
         setCustomerName('');
         setType('');
@@ -136,14 +153,21 @@ const CreateOrder = (props) => {
                         className="createButton"
                         onClick={handleCreate}
                     >
-                        Create
+                        Create Order
+                    </Button>
+                    <Button
+                        variant="contained"
+                        className="createButton"
+                        onClick={handleDraft}
+                    >
+                        Save Draft Order
                     </Button>
                     <Button 
                         variant="contained"
                         className="cancelButton"
                         onClick={handleCancel}
                     >
-                        Cancel
+                        Cancel Order
                     </Button>
                 </Box>
             </Modal>
@@ -151,4 +175,10 @@ const CreateOrder = (props) => {
     )
 }
 
-export default CreateOrder;
+const mapDispatchToProps = dispatch => {
+    return {
+        addDraftOrder: order => dispatch(addDraftOrder(order))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreateOrder);

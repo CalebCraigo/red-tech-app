@@ -15,9 +15,9 @@ import Chip from '@mui/material/Chip';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-
-import '../styles/body.css';
 import { getOrders, deleteOrder } from '../data/dataMethods';
+import { connect } from 'react-redux'
+import '../styles/body.css';
 
 const _ = require('lodash');
 
@@ -213,4 +213,9 @@ const Body = (props) => {
     )
 };
 
-export default Body;
+const mapStateToProps = state => {
+    return {
+        posts: state.posts
+    }
+}
+export default connect(mapStateToProps)(Body);
