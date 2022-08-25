@@ -9,3 +9,5 @@ function addDraftOrder(order) {
         }
     }
 }
+
+export { addDraftOrder }
