@@ -24,7 +24,8 @@ import Container from '@mui/material/Container';
 import Pagination from '@mui/material/Pagination';
 import { styled } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { deleteOrder } from '../data/dataMethods';
+import { getOrders, deleteOrder } from '../data/dataMethods';
+import { remove } from 'lodash';
 
 const _ = require('lodash');
 
@@ -39,19 +40,11 @@ const Body = (props) => {
     const [listSelection, setListSelection] = useState([]);
     
 
-    const setData = (data) => {
-        //Cannot add property 10, object is not extensible 
-        console.log("data", data);
-        let newArr = [];
-        for(let i; listData.length > i; i++){
-            if(listData.length > i){
-                newArr.push(listData[i]);
-            }else{
-                newArr.push(data.data);
-            }
+    async function setData (data) {
+        const handleDataFetch = (res) => {
+            setListData(res.data);
         }
-        console.log("newArr ", newArr);
-        setListData(newArr);
+        await getOrders(handleDataFetch)
     }
     useEffect(() => {
         if(props.results && props.results.length > 0){
@@ -136,9 +129,16 @@ const Body = (props) => {
         setModalOpen(false);
     }
 
-    const handleDelete = () => {
-                console.log("listSelection ", listSelection);
-        deleteOrder(listSelection, res => console.log("res", res))
+    async function handleDelete() {
+        await deleteOrder(listSelection)
+        let newArr = [...listData];
+        listData.forEach(item => {
+            if(listSelection.indexOf(item.orderId) !== -1){
+                newArr.splice(newArr.indexOf(item), 1);
+            }
+        })
+        
+        setListData(newArr);
     }
 
     return(

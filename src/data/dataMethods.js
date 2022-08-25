@@ -8,9 +8,11 @@ const config = {
 const url = 'https://red-candidate-web.azurewebsites.net/api/Orders';
 
 function getOrders(callback) {
-    axios.get(url, config)
+    return new Promise(resolve => {axios.get(url, config)
     .then(res=> callback(res))
     .catch(err=> console.log(err))
+    resolve('resolved');
+    })
 }
 
 function getOrdersByType(types, callback){
@@ -20,9 +22,10 @@ function getOrdersByType(types, callback){
 }
 
 function postOrder(order, callback) {
-    axios.post(url, order, config)
+    return new Promise(resolve => {axios.post(url, order, config)
     .then(res => callback(res))
     .catch(err => console.log('err', err))
+    })
 }
 
 function deleteOrder(order, callback) {
@@ -32,9 +35,11 @@ function deleteOrder(order, callback) {
       ApiKey: 'b7b77702-b4ec-4960-b3f7-7d40e44cf5f4'
     }
   };
-  axios.post(url, order, config, callback)
-    .then(res => callback(res))
+  return new Promise(resolve => {axios.post(url, order, config, callback)
+    .then(res => callback)
     .catch(err => console.log('err', err))
+    resolve('resolved');
+  })
 }
 
 export { getOrders, getOrdersByType, postOrder, deleteOrder}
