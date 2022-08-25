@@ -19,7 +19,6 @@ import { getOrders, deleteOrder } from '../data/dataMethods';
 import { connect } from 'react-redux'
 import '../styles/body.css';
 
-const _ = require('lodash');
 
 const Body = (props) => {
     const [searchText, setSearchText] = useState('');
