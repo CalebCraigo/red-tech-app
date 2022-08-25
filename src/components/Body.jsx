@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from 'react';
-import Table from './Table'
-import CreateOrder from './CreateOrder';
+import Table from './Table.jsx'
+import CreateOrder from './CreateOrder.jsx';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';

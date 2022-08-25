@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from 'react';
-import Header from './Header';
-import Body from './Body';
+import Header from './Header.jsx';
+import Body from './Body.jsx';
 import { getOrders }from '../data/dataMethods';
 
 const Main = () => {
