@@ -16,3 +16,12 @@
 .orderTypeMenu{
     padding: 8px !important;
 }
+
+/* Could not find what was causing the Order Type filter box to be so large, so brute force it is */
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    padding: 9px;
+}
+
+.orderTypeLabel{
+    position: relative;
+}

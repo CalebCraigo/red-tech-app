@@ -28,6 +28,14 @@ const CreateOrder = (props) => {
         p: 4,
     };
 
+    const orderTypes = [
+        'Standard',
+        'SaleOrder', 
+        'PurchaseOrder', 
+        'TransferOrder', 
+        'ReturnOrder'
+    ]
+
     const handleCustomerName = (event) => {
         setCustomerName(event.target.value);
     }
@@ -112,7 +120,7 @@ const CreateOrder = (props) => {
                             label="Order Type"
                             onChange={handleChange}
                         >
-                        {props.orderTypes.map((orderType) => (
+                        {orderTypes.map((orderType) => (
                             <MenuItem
                             key={orderType}
                             value={orderType}

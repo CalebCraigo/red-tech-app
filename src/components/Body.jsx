@@ -19,7 +19,6 @@ import AddIcon from '@mui/icons-material/Add';
 import '../styles/body.css';
 import { getOrders, deleteOrder } from '../data/dataMethods';
 
-
 const _ = require('lodash');
 
 const Body = (props) => {
@@ -169,7 +168,7 @@ const Body = (props) => {
                     Delete Selected
                 </Button>
                 <FormControl sx={{ m: 1, width: 250}} >
-                    <InputLabel id="order-type-label">Order Type</InputLabel>
+                    <InputLabel id="order-type-label" className="orderTypeLabel">Order Type</InputLabel>
                     <Select
                         labelId="order-type-label"
                         id="order-type"
