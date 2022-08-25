@@ -11,8 +11,37 @@ const Table = (props) => {
             setData(props.results)
         }
     })
+    let columns = {}
 
-    const columns = [
+    if(props.isDrafts){
+        columns = [
+            { 
+                field: 'createdDate', 
+                headerName: 'Draft Creation Date', 
+                sortable: true,
+                flex: 1
+            },
+            { 
+                field: 'createdByUserName', 
+                headerName: 'Created By', 
+                sortable: true,
+                flex: .5
+            },
+            {
+                field: 'orderType',
+                headerName: 'Order Type',
+                sortable: true,
+                flex: 1
+            },
+            {
+                field: 'customerName',
+                headerName: 'Customer',
+                sortable: true,
+                flex:3
+            }
+        ];
+    }else{
+        columns = [
         { 
             field: 'orderId', 
             headerName: 'Order Id',
@@ -44,6 +73,7 @@ const Table = (props) => {
             flex:3
         }
     ];
+    }
 
     const selection = (event) =>{
         props.setListSelection(event)
@@ -57,6 +87,7 @@ const Table = (props) => {
                 columns={columns}
                 checkboxSelection
                 onSelectionModelChange={selection}
+                disableSelectionOnClick={true}
             />
         </div>
     )

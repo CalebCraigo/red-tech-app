@@ -5,7 +5,8 @@ const draftOrdersReducer = (state = [], action) => {
         case "ADD_ORDER":
             return[
                 ...state, 
-                {
+                {  
+                    orderId: action.payload.orderId,
                     orderType: action.payload.orderType, 
                     customerName: action.payload.customerName, 
                     createdDate: action.payload.createdDate, 

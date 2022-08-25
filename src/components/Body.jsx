@@ -121,83 +121,89 @@ const Body = (props) => {
     }
 
     return(
-        <React.Fragment>
-            <Box
-                component="form"
-                sx={{
-                    flexGrow: 1
-                }}
-                noValidate
-                autoComplete="off"
-                className="formBox"
-            >
-                <div className="searchForm">
-                    <TextField
-                        id="search-bar"
-                        className="text"
-                        onChange={handleSearch}
-                        label="Search By Id"
-                        variant="outlined"
-                        size="small"
-                        value={searchText}
-                    />
-                    <IconButton 
-                        type="submit" 
-                        aria-label="search" 
-                        style={{ 
-                            backgroundColor: "#3872b4",
-                            borderRadius: "10%"
-                        }}>
-                        <SearchIcon style={{ fill: "#fff" }} />
-                    </IconButton>
-                </div>
-                <Button 
-                    variant="contained"
-                    className="createOrderButton" 
-                    onClick={handleModalOpen}
-                >
-                    <AddIcon />
-                    Create Order
-                </Button>
-                <Button 
-                    variant="contained"
-                    className="deleteSelectedButton"
-                    onClick={handleDelete}
-                >
-                    <DeleteIcon />
-                    Delete Selected
-                </Button>
-                <FormControl sx={{ m: 1, width: 250}} >
-                    <InputLabel id="order-type-label" className="orderTypeLabel">Order Type</InputLabel>
-                    <Select
-                        labelId="order-type-label"
-                        id="order-type"
-                        multiple
-                        value={selectedOrderTypes}
-                        onChange={handleOrderTypeFilter}
-                        input={<OutlinedInput label="orderType" />}
-                        renderValue={(selected) => (
-                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                        {selected.map((value) => (
-                            <Chip key={value} label={value} />
-                        ))}
-                        </Box>
-                        )}
-                        MenuProps={MenuProps}
+        <div>
+            {!props.isDrafts ?
+                <div>
+                    <Box
+                        component="form"
+                        sx={{
+                            flexGrow: 1
+                        }}
+                        noValidate
+                        autoComplete="off"
+                        className="formBox"
                     >
-                    {orderTypes.map((orderType) => (
-                        <MenuItem
-                        key={orderType}
-                        value={orderType}
-
+                        <div className="searchForm">
+                            <TextField
+                                id="search-bar"
+                                className="text"
+                                onChange={handleSearch}
+                                label="Search By Id"
+                                variant="outlined"
+                                size="small"
+                                value={searchText}
+                            />
+                            <IconButton 
+                                type="submit" 
+                                aria-label="search" 
+                                style={{ 
+                                    backgroundColor: "#3872b4",
+                                    borderRadius: "10%"
+                                }}>
+                                <SearchIcon style={{ fill: "#fff" }} />
+                            </IconButton>
+                        </div>
+                        <Button 
+                            variant="contained"
+                            className="createOrderButton" 
+                            onClick={handleModalOpen}
                         >
-                        {orderType}
-                        </MenuItem>
-                    ))}
-                    </Select>
-                </FormControl>
-            </Box>
-            <Table results= {listData} setListSelection={setListSelection}/>
+                            <AddIcon />
+                            Create Order
+                        </Button>
+                        <Button 
+                            variant="contained"
+                            className="deleteSelectedButton"
+                            onClick={handleDelete}
+                        >
+                            <DeleteIcon />
+                            Delete Selected
+                        </Button>
+                        <FormControl sx={{ m: 1, width: 250}} >
+                            <InputLabel id="order-type-label" className="orderTypeLabel">Order Type</InputLabel>
+                            <Select
+                                labelId="order-type-label"
+                                id="order-type"
+                                multiple
+                                value={selectedOrderTypes}
+                                onChange={handleOrderTypeFilter}
+                                input={<OutlinedInput label="orderType" />}
+                                renderValue={(selected) => (
+                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                {selected.map((value) => (
+                                    <Chip key={value} label={value} />
+                                ))}
+                                </Box>
+                                )}
+                                MenuProps={MenuProps}
+                            >
+                            {orderTypes.map((orderType) => (
+                                <MenuItem
+                                key={orderType}
+                                value={orderType}
+
+                                >
+                                {orderType}
+                                </MenuItem>
+                            ))}
+                            </Select>
+                        </FormControl>
+                    </Box>
+                    <Table results= {listData} setListSelection={setListSelection} isDrafts={props.isDrafts}/>
+                </div>
+                :
+                <Table results= {props.draftOrders} setListSelection={setListSelection} isDrafts={props.isDrafts}/>
+            }
             {modalOpen ?
                 <CreateOrder 
                     open={modalOpen}
@@ -209,13 +215,13 @@ const Body = (props) => {
                 :
                 <div />
             }
-        </React.Fragment>
+        </ div>
     )
 };
 
 const mapStateToProps = state => {
     return {
-        posts: state.posts
+        draftOrders: state.draftOrders
     }
 }
 export default connect(mapStateToProps)(Body);

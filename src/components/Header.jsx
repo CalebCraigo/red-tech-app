@@ -7,11 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import FolderIcon from '@mui/icons-material/Folder';
 import redTechnologiesSquarelogo from '../static/redTechnologiesSquarelogo.png';
 
 import '../styles/header.css';
 
-const Header = () => {
+const Header = (props) => {
     const theme = createTheme({
         status: {
             danger: '#e53e3e',
@@ -28,12 +29,18 @@ const Header = () => {
                 fontFamily: [
                     'sans-serif'
                 ]
-            },
-            components: {
-
-            },
+            }
         }
     });
+
+    const handleDraftClick = () => {
+        if(props.isDrafts){
+            props.setIsDrafts(false)
+        }else{
+            props.setIsDrafts(true)
+        }
+
+    }
 
     return(
         <ThemeProvider theme={theme}>
@@ -46,7 +53,10 @@ const Header = () => {
                         <Typography edge="start" sx={{ fontFamily: 'sans-serif', flexGrow: 1 }} color="808080" component="div">
                             Home
                         </Typography>
-                        <SettingsIcon sx={{ mr: 1 }}/>
+                        <IconButton onClick={handleDraftClick}>
+                            <FolderIcon sx={{ mr: .5 }}/>
+                        </IconButton>
+                        <SettingsIcon sx={{ mr: .5 }}/>
                         <AccountCircleIcon />
                     </Toolbar>
                 </AppBar>

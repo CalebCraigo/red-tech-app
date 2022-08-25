@@ -8,6 +8,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
 import { postOrder } from '../data/dataMethods';
 import { connect } from 'react-redux';
 import { addDraftOrder } from '../redux/actions';
@@ -84,10 +86,12 @@ const CreateOrder = (props) => {
     
     const handleDraft = () => {
         const d = new Date()
+        const orderId = Math.random()
         const date = dayName(d.getDay()) + ", "+ d.getDate() + " " + monthName(d.getMonth()) + " " + d.getFullYear();
         let newOrder = {}
         newOrder = {
             //UserName hardcode until OAuth connected
+            orderId: orderId,
             createdByUserName: 'Caleb',
             customerName: customerName,
             orderType: type,
@@ -96,7 +100,7 @@ const CreateOrder = (props) => {
         props.addDraftOrder(newOrder);
         props.handleClose();
     }
-    
+
     const handleCancel = () => {
         setCustomerName('');
         setType('');
@@ -111,8 +115,8 @@ const CreateOrder = (props) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                <Box sx={style} >
+                    <Typography id="modal-modal-title" variant="h6" component="h2" align="center">
                         Create Order
                     </Typography>
                         <Box
@@ -126,9 +130,10 @@ const CreateOrder = (props) => {
                                 value={customerName}
                                 onChange={handleCustomerName}
                                 className="customer"
+                                style={{width: '100%', paddingBottom:'10px', paddingTop:'10px'}}
                             />
                         </Box>
-                    <FormControl fullWidth>
+                    <FormControl fullWidth style={{paddingBottom: '20px'}}>
                         <InputLabel id="type">Order Type</InputLabel>
                         <Select
                             labelId="type"
@@ -148,27 +153,29 @@ const CreateOrder = (props) => {
                         ))}
                         </Select>
                     </FormControl>
-                    <Button 
-                        variant="contained"
-                        className="createButton"
-                        onClick={handleCreate}
-                    >
-                        Create Order
-                    </Button>
-                    <Button
-                        variant="contained"
-                        className="createButton"
-                        onClick={handleDraft}
-                    >
-                        Save Draft Order
-                    </Button>
-                    <Button 
-                        variant="contained"
-                        className="cancelButton"
-                        onClick={handleCancel}
-                    >
-                        Cancel Order
-                    </Button>
+                    <Stack spacing={2} direction="row" justifyContent="center">
+                        <Button 
+                            variant="contained"
+                            className="createButton"
+                            onClick={handleCreate}
+                        >
+                            Create
+                        </Button>
+                        <Button
+                            variant="contained"
+                            className="createButton"
+                            onClick={handleDraft}
+                        >
+                            Save Draft
+                        </Button>
+                        <Button 
+                            variant="contained"
+                            className="cancelButton"
+                            onClick={handleCancel}
+                        >
+                            Cancel
+                        </Button>
+                    </Stack>
                 </Box>
             </Modal>
         </React.Fragment>
