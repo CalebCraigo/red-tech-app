@@ -5,6 +5,7 @@
   "main": "server.js",
   "engines": {
     "yarn": "1.22.5",
+    "npm": "8.5.5",
     "node": "16.15.0"
   },
   "dependencies": {
