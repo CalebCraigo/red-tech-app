@@ -6,7 +6,7 @@
   "engines": {
     "npm": "8.5.5",
     "node": "16.15.0"
-  }
+  },
   "dependencies": {
     "@babel/core": "^7.18.13",
     "@babel/preset-env": "^7.18.10",
