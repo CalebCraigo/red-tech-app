@@ -36,7 +36,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "nod index.js",
+    "start": "node index.js",
     "build": "webpack --config webpack.prod.js",
     "test": "jest --verbose",
     "eject": "react-scripts eject"
