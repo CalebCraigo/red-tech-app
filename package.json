@@ -43,7 +43,7 @@
   },
   "scripts": {
     "heroku-postbuild": "npm install",
-    //"start": "node ./src/index.js",
+    "start-server": "node ./src/index.js",
     "start": "react-scripts start",
     "build": "webpack --config webpack.prod.js",
     "test": "jest --verbose",
