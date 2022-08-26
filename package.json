@@ -8,6 +8,8 @@
     "npm": "8.5.5",
     "node": "16.15.0"
   },
+  "start_url": ".",
+  "homepage": ".",
   "dependencies": {
     "@babel/core": "^7.18.13",
     "@babel/preset-env": "^7.18.10",
@@ -43,7 +45,8 @@
     "heroku-postbuild": "npm install",
     "start": "node server.js",
     "start-local": "react-scripts start",
-    "build": "webpack --config webpack.prod.js",
+    "build-prod": "webpack --config webpack.prod.js",
+    "build": "react-scripts build",
     "test": "jest --verbose",
     "eject": "react-scripts eject"
   },

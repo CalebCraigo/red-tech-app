@@ -5,7 +5,6 @@ module.exports = {
     output: { path: path.resolve(__dirname, "dist"), filename: "main.js" },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "src/index.html",
             filename: "index.html",
             inject: "body"
         })
