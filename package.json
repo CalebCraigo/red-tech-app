@@ -45,7 +45,7 @@
     "heroku-postbuild": "npm install",
     "start-server": "node ./src/index.js",
     "start": "react-scripts start",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.cjs",
     "test": "jest --verbose",
     "eject": "react-scripts eject"
   },
