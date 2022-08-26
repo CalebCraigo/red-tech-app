@@ -2,12 +2,12 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const publicPath = path.join(__dirname, '..', '/build.main.js');
+const publicPath = path.join(__dirname, '..', 'red-tech-app/build');
 
 app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
-   res.sendFile(path.join(__dirname + '/build/index.html'));
+   res.sendFile(path.join('build/index.html'));
 });
 
 app.listen(port, () => {
