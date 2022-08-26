@@ -134,7 +134,7 @@ const CreateOrder = (props) => {
                             />
                         </Box>
                     <FormControl fullWidth style={{paddingBottom: '20px'}}>
-                        <InputLabel id="type">Order Type</InputLabel>
+                        <InputLabel id="type" className="orderTypeLabel">Order Type</InputLabel>
                         <Select
                             labelId="type"
                             id="type"

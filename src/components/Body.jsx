@@ -24,10 +24,17 @@ const Body = (props) => {
     const [searchText, setSearchText] = useState('');
     const [masterData, setMasterData] = useState([]);
     const [listData, setListData] = useState([])
-    const [orderTypes, setOrderTypes] = useState([]);
     const [selectedOrderTypes, setSelectOrderTypes] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [listSelection, setListSelection] = useState([]);
+
+    const orderTypes = [
+        'Standard',
+        'SaleOrder', 
+        'PurchaseOrder', 
+        'TransferOrder', 
+        'ReturnOrder'
+    ]
 
     async function setData () {
         const handleDataFetch = (res) => {
@@ -41,22 +48,6 @@ const Body = (props) => {
             setListData(props.results);
         }
     }, [props.results], masterData, listData);
-
-    const removeDuplicateOrdTypes = (results) => {
-        let ordTypeArr = [];
-        results.forEach(result => {
-            ordTypeArr.push(result.orderType);
-            }
-        )
-        return ordTypeArr.filter((type, 
-            index) => ordTypeArr.indexOf(type) === index);
-    };    
-
-    useEffect(() => {   
-        if(props.results && props.results.length > 0){
-            setOrderTypes(removeDuplicateOrdTypes(props.results));
-        }
-    }, [props.results], orderTypes);
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -168,19 +159,20 @@ const Body = (props) => {
                             <DeleteIcon />
                             Delete Selected
                         </Button>
-                        <FormControl sx={{ m: 1, width: 250}} >
+                        <FormControl sx={{ m: 1.9, width: 250}} size="small" className="orderTypeForm">
                             <InputLabel id="order-type-label" className="orderTypeLabel">Order Type</InputLabel>
                             <Select
                                 labelId="order-type-label"
+                                className="selectionBox"
                                 id="order-type"
                                 multiple
                                 value={selectedOrderTypes}
                                 onChange={handleOrderTypeFilter}
                                 input={<OutlinedInput label="orderType" />}
                                 renderValue={(selected) => (
-                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                <Box className="chipOuterBox" sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                                 {selected.map((value) => (
-                                    <Chip key={value} label={value} />
+                                    <Chip className="valueChip" key={value} label={value} />
                                 ))}
                                 </Box>
                                 )}

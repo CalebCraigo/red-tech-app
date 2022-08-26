@@ -9,19 +9,27 @@
 }
 
 .deleteSelectedButton{
-    margin: 10px !important;
+    margin: 15px !important;
     background-color: #3872b4 !important;
+}
+
+.orderTypeForm{
+    min-width: 270px !important;
+    width: fit-content !important;
 }
 
 .orderTypeMenu{
     padding: 8px !important;
 }
 
-/* Could not find what was causing the Order Type filter box to be so large, so brute force it is */
-.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-    padding: 9px;
-}
-
 .orderTypeLabel{
     position: relative;
+}
+
+.chipOuterBox{
+    height: 23px;
+}
+
+.valueChip {
+    height: 23px !important;
 }
