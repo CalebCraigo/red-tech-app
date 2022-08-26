@@ -7,7 +7,7 @@ const publicPath = path.join(__dirname, '..', 'red-tech-app/dist');
 app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
-   res.sendFile(path.join(publicPath, 'main.js'));
+   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 app.listen(port, () => {
