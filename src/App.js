@@ -5,6 +5,7 @@ import store from './redux/store.js'
 
 function App() {
   return (
+    //test continuous integration change
     <Provider store={store}>
       <Main />
     </Provider>
