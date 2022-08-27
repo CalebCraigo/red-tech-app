@@ -1,5 +1,7 @@
 import React, { useState, useEffect }  from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import { ThemeProvider } from '@mui/material/styles';
+import "../styles/table.css";
 
 const Table = (props) => {
 
@@ -7,7 +9,6 @@ const Table = (props) => {
 
     useEffect(() => {
         if(props.results && props.results.length > 0){
-            console.log(props)
             setData(props.results)
         }
     })
@@ -80,16 +81,22 @@ const Table = (props) => {
     }
 
     return(
-        <div style={{ height: '900px', width: '100%' }}>
-            <DataGrid
-                getRowId={(data) => data.orderId}
-                rows={data}
-                columns={columns}
-                checkboxSelection
-                onSelectionModelChange={selection}
-                disableSelectionOnClick={true}
-            />
-        </div>
+        <ThemeProvider theme={props.theme}>
+            <div style={{ height: '900px', width: '100%' }}>
+                <DataGrid
+                    getRowId={(data) => data.orderId}
+                    rows={data}
+                    columns={columns}
+                    checkboxSelection
+                    onSelectionModelChange={selection}
+                    disableSelectionOnClick={true}
+                    sx={{
+                        backgroundColor: 'primary.light'
+                    }}
+                    hideFooter={true}
+                />
+            </div>
+        </ThemeProvider>
     )
 }
 

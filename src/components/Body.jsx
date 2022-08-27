@@ -17,6 +17,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { getOrders, deleteOrder } from '../data/dataMethods';
 import { connect } from 'react-redux'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import '../styles/body.css';
 
 
@@ -111,10 +112,12 @@ const Body = (props) => {
     }
 
     return(
+        <ThemeProvider theme={props.theme}>
         <div>
             {!props.isDrafts ?
                 <div>
                     <Box
+                        bgcolor="primary.light"
                         component="form"
                         sx={{
                             flexGrow: 1
@@ -147,6 +150,7 @@ const Body = (props) => {
                             variant="contained"
                             className="createOrderButton" 
                             onClick={handleModalOpen}
+                            color="info"
                         >
                             <AddIcon />
                             Create Order
@@ -155,6 +159,7 @@ const Body = (props) => {
                             variant="contained"
                             className="deleteSelectedButton"
                             onClick={handleDelete}
+                            color="info"
                         >
                             <DeleteIcon />
                             Delete Selected
@@ -190,10 +195,10 @@ const Body = (props) => {
                             </Select>
                         </FormControl>
                     </Box>
-                    <Table results= {listData} setListSelection={setListSelection} isDrafts={props.isDrafts}/>
+                    <Table theme={props.theme} results= {listData} setListSelection={setListSelection} isDrafts={props.isDrafts}/>
                 </div>
                 :
-                <Table results= {props.draftOrders} setListSelection={setListSelection} isDrafts={props.isDrafts}/>
+                <Table theme={props.theme} results= {props.draftOrders} setListSelection={setListSelection} isDrafts={props.isDrafts}/>
             }
             {modalOpen ?
                 <CreateOrder 
@@ -207,6 +212,7 @@ const Body = (props) => {
                 <div />
             }
         </ div>
+        </ThemeProvider>
     )
 };
 
