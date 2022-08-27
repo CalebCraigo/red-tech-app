@@ -1,5 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import { ThemeProvider } from '@mui/material/styles';
 
 const Table = (props) => {
 
@@ -80,16 +81,21 @@ const Table = (props) => {
     }
 
     return(
-        <div style={{ height: '900px', width: '100%' }}>
-            <DataGrid
-                getRowId={(data) => data.orderId}
-                rows={data}
-                columns={columns}
-                checkboxSelection
-                onSelectionModelChange={selection}
-                disableSelectionOnClick={true}
-            />
-        </div>
+        <ThemeProvider theme={props.theme}>
+            <div style={{ height: '900px', width: '100%' }}>
+                <DataGrid
+                    getRowId={(data) => data.orderId}
+                    rows={data}
+                    columns={columns}
+                    checkboxSelection
+                    onSelectionModelChange={selection}
+                    disableSelectionOnClick={true}
+                    sx={{
+                        backgroundColor: 'primary.main'
+                    }}
+                />
+            </div>
+        </ThemeProvider>
     )
 }
 
