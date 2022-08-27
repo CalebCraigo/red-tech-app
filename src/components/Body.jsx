@@ -117,7 +117,7 @@ const Body = (props) => {
             {!props.isDrafts ?
                 <div>
                     <Box
-                        bgcolor="primary.main"
+                        bgcolor="primary.light"
                         component="form"
                         sx={{
                             flexGrow: 1
@@ -150,6 +150,7 @@ const Body = (props) => {
                             variant="contained"
                             className="createOrderButton" 
                             onClick={handleModalOpen}
+                            color="info"
                         >
                             <AddIcon />
                             Create Order
@@ -158,6 +159,7 @@ const Body = (props) => {
                             variant="contained"
                             className="deleteSelectedButton"
                             onClick={handleDelete}
+                            color="info"
                         >
                             <DeleteIcon />
                             Delete Selected

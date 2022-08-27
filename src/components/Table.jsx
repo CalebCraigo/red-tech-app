@@ -1,6 +1,7 @@
 import React, { useState, useEffect }  from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { ThemeProvider } from '@mui/material/styles';
+import "../styles/table.css";
 
 const Table = (props) => {
 
@@ -91,8 +92,9 @@ const Table = (props) => {
                     onSelectionModelChange={selection}
                     disableSelectionOnClick={true}
                     sx={{
-                        backgroundColor: 'primary.main'
+                        backgroundColor: 'primary.light'
                     }}
+                    hideFooter={true}
                 />
             </div>
         </ThemeProvider>

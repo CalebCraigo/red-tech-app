@@ -35,11 +35,27 @@ const Main = () => {
             ...(mode === 'light' ?
                 {
                     primary: {
-                        500: '#FFFFFF'
+                        main: '#ffffff',
+                    },
+                    secondary: {
+                        main: '#000000',
+                        light: '#DCDBDC !important',
+                    },
+                    info: {
+                        main: '#000000',
                     }
+
                 } : {
                     primary: {
-                        500: '#000000'
+                        main: '#000000',
+                        light: '#282828'
+                    },
+                    secondary: {
+                        main: '#FFFFFF',
+                        light: '#FFFFFF !important',
+                    },
+                    info: {
+                        main: '#000000',
                     }
                 }
 

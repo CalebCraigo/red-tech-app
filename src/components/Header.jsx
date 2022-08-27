@@ -47,19 +47,19 @@ const Header = (props) => {
 
     return(
         <ThemeProvider theme={props.theme}>
-            <Box sx={{ flexGrow: 1 }} color="primary.main">
+            <Box sx={{ flexGrow: 1, borderColor: 'secondary.light', borderBottom: 1}} bg="primary.main" >
                 <AppBar position="static">
                     <Toolbar>
                         <IconButton edge="start" color="inherit" aria-label="menu" >
                             <img className="logo" src={redTechnologiesSquarelogo} alt="Red Technologies" />
                         </IconButton>
-                        <Typography edge="start" sx={{ fontFamily: 'sans-serif', flexGrow: 1 }} color="808080" component="div">
+                        <Typography edge="start" sx={{ fontFamily: 'sans-serif', flexGrow: 1 }} color="secondary.main" component="div">
                             Home
                         </Typography>
-                        <IconButton onClick={handleDraftClick}>
+                        <IconButton onClick={handleDraftClick} color="secondary">
                             <FolderIcon sx={{ mr: .5 }}/>
                         </IconButton>
-                        <IconButton onClick={handleClick}>
+                        <IconButton onClick={handleClick} color="secondary">
                             <SettingsIcon sx={{ mr: .5 }}/>
                         </IconButton>
                         <AccountCircleIcon />
