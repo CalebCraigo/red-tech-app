@@ -9,7 +9,6 @@ const Table = (props) => {
 
     useEffect(() => {
         if(props.results && props.results.length > 0){
-            console.log(props)
             setData(props.results)
         }
     })

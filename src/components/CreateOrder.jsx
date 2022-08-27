@@ -9,6 +9,7 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { ThemeProvider } from '@mui/material/styles';
 
 import { postOrder } from '../data/dataMethods';
 import { connect } from 'react-redux';
@@ -109,14 +110,15 @@ const CreateOrder = (props) => {
 
     return(
         <React.Fragment>
+        <ThemeProvider theme={props.theme}>
             <Modal
                 open={props.open}
                 onClose={props.handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style} >
-                    <Typography id="modal-modal-title" variant="h6" component="h2" align="center">
+                <Box sx={style} bgcolor="primary.light">
+                    <Typography id="modal-modal-title" variant="h6" component="h2" align="center" color="secondary.main">
                         Create Order
                     </Typography>
                         <Box
@@ -158,6 +160,7 @@ const CreateOrder = (props) => {
                             variant="contained"
                             className="createButton"
                             onClick={handleCreate}
+                            color="info"
                         >
                             Create
                         </Button>
@@ -165,6 +168,7 @@ const CreateOrder = (props) => {
                             variant="contained"
                             className="createButton"
                             onClick={handleDraft}
+                            color="info"
                         >
                             Save Draft
                         </Button>
@@ -172,12 +176,14 @@ const CreateOrder = (props) => {
                             variant="contained"
                             className="cancelButton"
                             onClick={handleCancel}
+                            color="info"
                         >
                             Cancel
                         </Button>
                     </Stack>
                 </Box>
             </Modal>
+            </ThemeProvider>
         </React.Fragment>
     )
 }
